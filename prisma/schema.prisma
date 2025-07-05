@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Mengambil URL dari file .env
+}
+
+// MODEL UNTUK AUTENTIKASI
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  nama      String
+  createdAt DateTime @default(now())
+}
+
+// MODEL UNTUK DATA PENDUDUK
+model Dusun {
+  id        Int      @id @default(autoincrement())
+  nama_dusun String  @unique
+  keluargas Keluarga[]
+}
+
+model Keluarga {
+  id                    Int        @id @default(autoincrement())
+  nomor_kk              String     @unique
+  nama_kepala_keluarga  String
+  alamat                String?
+  dusun                 Dusun?     @relation(fields: [dusunId], references: [id])
+  dusunId               Int?
+  penduduks             Penduduk[]
+}
+
+model Penduduk {
+  id              Int       @id @default(autoincrement())
+  nik             String?   @unique
+  nama_lengkap    String
+  tempat_lahir    String?
+  tanggal_lahir   DateTime?
+  jenis_kelamin   String?
+  nama_ayah       String?
+  nama_ibu        String?
+  agama           String?
+  pendidikan      String?
+  pekerjaan       String?
+  keterangan      String?
+  status_hubungan String?
+  keluarga        Keluarga  @relation(fields: [keluargaId], references: [id], onDelete: Cascade)
+  keluargaId      Int
+}
