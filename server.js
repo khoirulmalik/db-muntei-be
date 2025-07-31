@@ -15,6 +15,10 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "success", message: "Backend is running!" });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/penduduk", pendudukRoutes);
 app.use("/api/keluarga", keluargaRoutes);
