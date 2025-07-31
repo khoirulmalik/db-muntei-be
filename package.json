@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "test-seed": "node prisma/test.js",
-    "start": "node server.js",
-    "build": "npx prisma migrate deploy"
+    "start": "npx prisma migrate deploy && node server.js"
+
   },
   "prisma": {
     "seed": "node prisma/seed.js"
