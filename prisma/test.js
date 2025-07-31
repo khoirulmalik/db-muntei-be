@@ -8,8 +8,8 @@ const prisma = new PrismaClient();
 console.log("--- SCRIPT DENGAN LOGIKA BARU MULAI BERJALAN ---");
 
 // Konfigurasi
-const CSV_FILE_PATH = 'bekkeiliuk.csv'; // Pastikan nama file CSV Anda sudah bersih
-const NAMA_DUSUN = 'BEKKEILUK';
+const CSV_FILE_PATH = 'toktuk.csv'; // Pastikan nama file CSV Anda sudah bersih
+const NAMA_DUSUN = 'TOKTUK';
 
 async function main() {
   console.log('🚀 Memulai proses impor...');
